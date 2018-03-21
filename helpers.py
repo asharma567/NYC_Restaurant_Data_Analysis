@@ -2,6 +2,18 @@ import pandas as pd
 import googlemaps
 from scipy import stats
 import matplotlib.pyplot as plt
+from concurrent.futures import ThreadPoolExecutor
+
+def multithread_map(fn, work_list, num_workers=50):
+    
+    '''
+    spawns a threadpool and assigns num_workers to some 
+    list, array, or any other container. Motivation behind 
+    this was for functions that involve scraping.
+    '''
+    with ThreadPoolExecutor(max_workers=num_workers) as executor:
+        return list(executor.map(fn, work_list))
+
 
 def make_expected_frequency_H0(df):
     df_proportions_with_ct = df_to_perc_breakouts_per_cuisine(df)[:]
@@ -52,8 +64,9 @@ def missing_values_finder(df):
 
 def get_lat_lon(str_, stop_words=None):
     geocode_result = []
+    gmaps = googlemaps.Client(key='AIzaSyCol8kK-GVXAIukXhICNXuaBIgqzENNp7I')
+    
     try:
-        gmaps = googlemaps.Client(key='AIzaSyCol8kK-GVXAIukXhICNXuaBIgqzENNp7I')
 
         if stop_words:
             str_ = ' '.join([word for word in str_.split() if word not in set(stop_words)])
