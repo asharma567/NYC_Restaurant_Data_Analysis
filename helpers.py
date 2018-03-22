@@ -78,63 +78,6 @@ def get_lat_lon(str_, stop_words=None):
         print (geocode_result)
         return None
 
-def plot_stacked_bar(df_to_plot, label, color_map = 'YlOrBr'):
-    '''
-    INPUT: DF, label(string) for the x-axis to be displayed at the top
-    OUTPUT: Stacked Bar Chart
-    '''
-    # create a figure of given size
-    fig = plt.figure(figsize=(25,25))
-
-    # add a subplot
-    ax = fig.add_subplot(111)
-
-    # set color transparency (0: transparent; 1: solid)
-    a = 0.8
-
-    # set x axis label on top of plot, set label text
-    xlab = label
-    ax.set_xlabel(xlab, fontsize=20, alpha=a, ha='left')
-    ax.xaxis.set_label_coords(0, 1.04)
-
-    # position x tick labels on top
-    ax.xaxis.tick_top()
-
-    # remove tick lines in x and y axes
-    ax.yaxis.set_ticks_position('none')
-    ax.xaxis.set_ticks_position('none')
-
-    # remove grid lines (dotted lines inside plot)
-    ax.grid(False)
-
-    # Remove plot frame
-    ax.set_frame_on(False)
-
-    # using the actual data to plot
-    df_to_plot[::-1].plot(
-        ax=ax, 
-        kind='barh', 
-        alpha=a, 
-        edgecolor='w',
-        fontsize=12, 
-        grid=True, 
-        width=.8, 
-        stacked=True,
-        cmap=get_cmap(color_map)
-    )
-
-    # remove weird dotted line on axis
-#     ax.lines[0].set_visible(False)
-
-    # multiply xticks by format into pct
-    fmt = '%.0f%%' # Format you want the ticks, e.g. '40%'
-    xticks = matplotlib.ticker.FormatStrFormatter(fmt)
-    ax.xaxis.set_major_formatter(xticks)
-    ax.xaxis.set_ticks(ax.xaxis.get_majorticklocs()[:-1])
-
-    plt.legend(prop={'size':20}, frameon=False, fancybox=None)
-    plt.tight_layout()
-    plt.show();
 
 def df_to_perc_breakouts_per_cuisine(input_df):
     '''
@@ -287,4 +230,61 @@ def show_chi_squared_test_results(total_distribution_proportion, df_proportions_
         figsize=(8,5)
     );
     return df_expected, df_rand_obs, df_random_obs_stats
-    
+
+def plot_stacked_bar(df_to_plot, label, color_map = 'YlOrBr'):
+    '''
+    INPUT: DF, label(string) for the x-axis to be displayed at the top
+    OUTPUT: Stacked Bar Chart
+    '''
+    # create a figure of given size
+    fig = plt.figure(figsize=(25,25))
+
+    # add a subplot
+    ax = fig.add_subplot(111)
+
+    # set color transparency (0: transparent; 1: solid)
+    a = 0.8
+
+    # set x axis label on top of plot, set label text
+    xlab = label
+    ax.set_xlabel(xlab, fontsize=20, alpha=a, ha='left')
+    ax.xaxis.set_label_coords(0, 1.04)
+
+    # position x tick labels on top
+    ax.xaxis.tick_top()
+
+    # remove tick lines in x and y axes
+    ax.yaxis.set_ticks_position('none')
+    ax.xaxis.set_ticks_position('none')
+
+    # remove grid lines (dotted lines inside plot)
+    ax.grid(False)
+
+    # Remove plot frame
+    ax.set_frame_on(False)
+
+    # using the actual data to plot
+    df_to_plot[::-1].plot(
+        ax=ax, 
+        kind='barh', 
+        alpha=a, 
+        edgecolor='w',
+        fontsize=12, 
+        grid=True, 
+        width=.8, 
+        stacked=True,
+        cmap=get_cmap(color_map)
+    )
+
+    # remove weird dotted line on axis
+#     ax.lines[0].set_visible(False)
+
+    # multiply xticks by format into pct
+    fmt = '%.0f%%' # Format you want the ticks, e.g. '40%'
+    xticks = matplotlib.ticker.FormatStrFormatter(fmt)
+    ax.xaxis.set_major_formatter(xticks)
+    ax.xaxis.set_ticks(ax.xaxis.get_majorticklocs()[:-1])
+
+    plt.legend(prop={'size':20}, frameon=False, fancybox=None)
+    plt.tight_layout()
+    plt.show();

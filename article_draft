@@ -1,0 +1,24 @@
+Uzbek food
+-----
+
+Went in for a haircut this weekend and my barber was still in a state of inertia on what to do with his old place. Often times when people are in this situation, all they need is more information (data) to aid them in their decision making. So thought why not help'em out, _a friend in need is a friend indeed._
+
+Besides, I was stuck at home healing from a climbing injury and nothing goes better with wine than analysis.
+
+#exchange
+Injured myself climbing so I'm stuck at home this weekend helpout my longtime barber on a major business decision on openning up a new resturant in east village -- more importantly -- while I polish off a bottle of Cab.
+
+This is what I love about data science, you could helpout just about anybody!
+
+assumptions: he's held a business there already for many years and knows the volume of foot traffic and demographic type pretty well.
+
+<pic>
+
+[SafeDiningNYC](https://safediningnyc.com/) already has a pretty awesome map of all the resturants in NYC their corresponding grades. 
+
+But it misses something crucial. Lines are blurry for niche resturants in terms of what category to all into.
+
+
+Key insight:
+Since there seems to be a relationship between the grade and the cuisine type, it makes sense to start a business under a more favorable cuisine type
+
